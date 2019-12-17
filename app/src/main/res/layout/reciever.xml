@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView
+        android:id="@+id/sender_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
+    <TextView
+        android:id="@+id/reciever_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/msgSenderIcon"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:adjustViewBounds="false"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginRight="5dp"
+        android:gravity="center"
+        android:textFontWeight="800"
+        android:textSize="18sp"
+        android:textColor="#333"
+        android:background="@drawable/shape"
+        android:text="D"/>
+<LinearLayout
+    android:id="@+id/recieved"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="left"
+    android:layout_marginTop="20dp"
+    android:background="@drawable/reciever_back"
+    android:elevation="4dp">
+    <TextView
+        android:id="@+id/chat"
+        android:text="Hello Morning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#333"
+        android:textSize="17sp"
+        android:paddingLeft="10dp"
+        android:paddingRight="20dp"
+        android:paddingTop="5dp"/>
+    <TextView
+        android:id="@+id/Time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:textColor="#444"
+        android:paddingLeft="10dp"
+        android:paddingRight="30dp"
+        android:text="6:00 am"
+        android:layout_gravity="left"
+        android:textSize="10dp"/>
+</LinearLayout>
+</LinearLayout>

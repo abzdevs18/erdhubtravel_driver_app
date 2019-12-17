@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:mapbox="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".BusLocation">
+    <com.mapbox.mapboxsdk.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        mapbox:layout_constraintBottom_toBottomOf="parent"
+        mapbox:layout_constraintEnd_toEndOf="parent"
+        mapbox:layout_constraintStart_toStartOf="parent"
+        mapbox:layout_constraintTop_toTopOf="parent"
+        mapbox:mapbox_cameraTargetLat="36.16266"
+        mapbox:mapbox_cameraTargetLng="-86.78160"
+        mapbox:mapbox_cameraZoom="12">
+    </com.mapbox.mapboxsdk.maps.MapView>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:gravity="right"
+        android:orientation="vertical"
+        app:layout_dodgeInsetEdges="bottom">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/signOut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:contentDescription="Sign Out"
+            android:src="@drawable/ic_exit"
+            android:layout_marginBottom="5dp"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/scheduleFab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:contentDescription="Search Map"
+            android:src="@drawable/ic_schedule"
+            android:layout_marginBottom="5dp"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/messenger"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/ic_message_black_24dp"
+            android:contentDescription="Search Map"
+            android:layout_margin="16dp"/>
+    </LinearLayout>
+    <RelativeLayout
+            android:id="@+id/bottomSheet"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:background="#fff"
+            android:paddingBottom="15dp"
+            app:behavior_hideable="true"
+            app:behavior_peekHeight="0dp"
+            app:layout_insetEdge="bottom"
+            app:layout_behavior="@string/bottom_sheet_behavior">
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/chat_appBar"
+                android:layout_width="match_parent"
+                android:background="@drawable/back"
+                app:elevation="0dp"
+                android:layout_height="85dp">
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/chat_toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="20dp"
+                    android:layout_height="?attr/actionBarSize">
+                    <TextView
+                        android:id="@+id/prof_icon"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:adjustViewBounds="false"
+                        android:layout_marginLeft="1dp"
+                        android:gravity="center"
+                        android:textFontWeight="800"
+                        android:textSize="30sp"
+                        android:textColor="#333"
+                        android:background="@drawable/shape"
+                        android:text="A"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="5"
+                        android:paddingLeft="5dp"
+                        android:orientation="horizontal">
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="4"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <TextView
+                                android:id="@+id/reciever"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Clint Anthony"
+                                android:textStyle="bold"
+                                android:textColor="#ffffff"
+                                android:textSize="20sp"/>
+                            <TextView
+                                android:id="@+id/rEmail"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="#fff"
+                                android:textSize="16sp"
+                                android:text="online"/>
+                        </LinearLayout>
+                        <ImageView
+                            android:id="@+id/refresh"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:foregroundGravity="right"
+                            android:src="@drawable/ic_refresh"/>
+
+                    </LinearLayout>
+                </androidx.appcompat.widget.Toolbar>
+            </com.google.android.material.appbar.AppBarLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_below="@id/chat_appBar"
+                android:layout_width="match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:id="@+id/recyHolder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toTopOf="@+id/inputField">
+                    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                        android:id="@+id/swipeRefresh"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/msgs_recycler"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                        </androidx.recyclerview.widget.RecyclerView>
+                    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/inputField"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:orientation="vertical"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:weightSum="4"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    tools:layout_editor_absoluteX="45dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/thumnail"
+                            android:visibility="gone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="5dp">
+
+                            <ImageView
+                                android:id="@+id/image_send"
+                                android:layout_width="150dp"
+                                android:layout_height="80dp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/model"
+                                tools:layout_editor_absoluteX="0dp"
+                                tools:layout_editor_absoluteY="0dp" />
+
+                            <ImageView
+                                android:id="@+id/image_send_close"
+                                android:layout_width="17dp"
+                                android:layout_height="16dp"
+                                android:src="@drawable/ic_close"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/msg"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3.8"
+                            android:background="@drawable/message_input"
+                            android:hint="send your message now"
+                            android:padding="8dp"
+                            android:textColor="#fff"
+                            android:textColorHint="#fff"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/send_icon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:background="@drawable/ic_send"
+                            android:clickable="true"
+                            android:padding="3dp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/driverSchedule"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:paddingBottom="15dp"
+        app:behavior_hideable="true"
+        app:behavior_peekHeight="500dp"
+        app:layout_insetEdge="bottom"
+        app:layout_behavior="@string/bottom_sheet_behavior">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:elevation="8dp"
+            android:background="@drawable/borderradius">
+            <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="5dp">
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="3dp"
+                android:background="#00695c"
+                android:layout_margin="10dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_gravity="right"
+                android:layout_margin="10dp"
+                android:weightSum="6"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/place_name"
+                    android:layout_width="0dp"
+                    android:layout_weight="5"
+                    android:textSize="25sp"
+                    android:textFontWeight="500"
+                    android:layout_height="wrap_content"
+                    android:text="Route Schedule" />
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="50dp"
+                    android:layout_gravity="right"
+                    android:src="@drawable/ic_lens" />
+            </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="4"
+                    android:layout_margin="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/borderradius"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="100dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/list_bus"
+                        android:scaleType="fitCenter"/>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:layout_marginLeft="20dp"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/routeDestination"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Balugo to Valencia"
+                            android:textFontWeight="500"
+                            android:textSize="18sp"/>
+                        <TextView
+                            android:id="@+id/routeSched"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:text="10:11 am"
+                            android:textColor="#ef2e4e"/>
+                    </LinearLayout>
+                </LinearLayout>
+        </LinearLayout>
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

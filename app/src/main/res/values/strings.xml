@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">ertDriver</string>
+    <string name="new_location">New Location</string>
+    <string name="splash_punch">Instantly meet new friends</string>
+    <!--    MapBox TOkeN -->
+    <string name="mapbox_access_token">pk.eyJ1IjoicmphbWVzMTExMjEzIiwiYSI6ImNrM2t2eHBzaDBpa2YzY2s1aWV4dTkzOGcifQ.Gd_Y17yco90SmeOz4PKIZQ</string>
+    <string name="dummy_text">laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat</string>
+
+</resources>

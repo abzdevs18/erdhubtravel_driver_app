@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:orientation="vertical"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:layout_margin="10dp"
+android:elevation="8dp"
+android:background="@drawable/borderradius">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="5dp">
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="3dp"
+        android:background="#00695c"
+        android:layout_margin="10dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="4"
+        android:layout_margin="10dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/borderradius"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:src="@drawable/list_bus"
+            android:scaleType="fitCenter"/>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:layout_marginLeft="20dp"
+            android:layout_gravity="top"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/routeDestination"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Balugo to Valencia"
+                android:textFontWeight="500"
+                android:textSize="20sp"/>
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="50dp"
+            android:layout_gravity="right"
+            android:src="@drawable/ic_lens" />
+    </LinearLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Assign"
+        android:layout_gravity="right"
+        android:layout_marginRight="10dp"/>
+</LinearLayout>
+</RelativeLayout>
